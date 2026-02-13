@@ -24,8 +24,19 @@ public class EjerciciosString {
      * @return el numero total de veces que aparece 'c'
      */
     public static int ContarLetra(String s, char c) {
-        return 0;
+        if (s == null || s.isEmpty()) return 0;
+
+        int contador = 0;
+        int posicion = s.indexOf(c);
+
+        while (posicion != -1) {
+            contador++;
+            posicion = s.indexOf(c, posicion + 1);
+        }
+
+        return contador;
     }
+
 
 
     /**
@@ -46,8 +57,20 @@ public class EjerciciosString {
      *
      */
     public static String Filtrar1 (String s1, String s2){
-        return "";
+        if (s1 == null || s1.isEmpty()) return "";
+
+        String resultado = "";
+        String[] palabras = s1.split(" ");
+
+        for (String palabra : palabras) {
+            if (palabra.contains(s2)) {
+                if (!resultado.isEmpty()) resultado += " ";
+                resultado += palabra;
+            }
+        }
+        return resultado;
     }
+
 
 
     /**
@@ -68,8 +91,20 @@ public class EjerciciosString {
      *
      */
     public static String Filtrar2 (String s1, String s2){
-        return "";
+        if (s1 == null || s1.isEmpty()) return "";
+
+        String resultado = "";
+        String[] palabras = s1.split(" ");
+
+        for (String palabra : palabras) {
+            if (palabra.startsWith(s2)) {
+                if (!resultado.isEmpty()) resultado += " ";
+                resultado += palabra;
+            }
+        }
+        return resultado;
     }
+
 
 
     /**
@@ -82,7 +117,18 @@ public class EjerciciosString {
      * @return Los correos validos
      */
     public static String FiltrarCorreo (String s1, String s2){
-        return "";
+        if (s1 == null || s1.isEmpty()) return "";
+
+        String resultado = "";
+        String[] correos = s1.split(" ");
+
+        for (String correo : correos) {
+            if (correo.contains("@"+s2)) {
+                if (!resultado.isEmpty()) resultado += " ";
+                resultado += correo;
+            }
+        }
+        return resultado;
     }
 
 
@@ -99,7 +145,18 @@ public class EjerciciosString {
      *
      */
     public static String FiltrarIP (String s1, String s2){
-        return "";
+        if (s1 == null || s1.isEmpty()) return "";
+
+        String resultado = "";
+        String[] ips = s1.split(" ");
+
+        for (String ip : ips) {
+            if (!ip.contains(s2)) {
+                if (!resultado.isEmpty()) resultado += " ";
+                resultado += ip;
+            }
+        }
+        return resultado;
     }
 
 
@@ -124,8 +181,38 @@ public class EjerciciosString {
      *
      */
     public static String FiltrarFecha (String s1, String s2){
-        return "";
+        if (s1 == null || s1.isEmpty()) return "";
+
+        String resultado = "";
+        String[] fechas = s1.split(" ");
+
+        String mesNumero = "";
+
+        switch (s2.toUpperCase()) {
+            case "ENERO": mesNumero = "/01/"; break;
+            case "FEBRERO": mesNumero = "/02/"; break;
+            case "MARZO": mesNumero = "/03/"; break;
+            case "ABRIL": mesNumero = "/04/"; break;
+            case "MAYO": mesNumero = "/05/"; break;
+            case "JUNIO": mesNumero = "/06/"; break;
+            case "JULIO": mesNumero = "/07/"; break;
+            case "AGOSTO": mesNumero = "/08/"; break;
+            case "SEPTIEMBRE": mesNumero = "/09/"; break;
+            case "OCTUBRE": mesNumero = "/10/"; break;
+            case "NOVIEMBRE": mesNumero = "/11/"; break;
+            case "DICIEMBRE": mesNumero = "/12/"; break;
+        }
+
+        for (String fecha : fechas) {
+            if (!fecha.contains(mesNumero)) {
+                if (!resultado.isEmpty()) resultado += " ";
+                resultado += fecha;
+            }
+        }
+
+        return resultado;
     }
+
 
 
 
