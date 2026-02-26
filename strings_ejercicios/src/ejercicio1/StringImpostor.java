@@ -45,16 +45,16 @@ public class StringImpostor {
      * @return la 1º posicion del carcater 'c' a partir de n si lo encuentra. Si no, -1.
      *
      */
-    public static int Indice (String s, char c, int n) {
+    // CON EL FOR RECORREMOS CADA POSICION
+    //CON EL IF COMPARO SI LA LETRA ACTULA ES LA MISMA QUE LA QUE BUSCAMOS
+    // Y CON LOS RETURN SI CONINCIDE DEVUELVE LA POSICION EN LA QUE ESTA Y NO LA ENCUENTRA DEVUELVE -1
+    public static int Indice(String s, char c, int n) {
         for (int i = n; i < s.length(); i++) {
-            if (s.charAt(i) == c) {
-                return i;
-            }
+            if (s.charAt(i) == c) return i;
         }
         return -1;
     }
-
-    /**
+    /**0
      * Método de LastIndexOf()
      *
      * @param s, String donde buscar
@@ -62,14 +62,9 @@ public class StringImpostor {
      * @param c, es la letra a buscar.
      * @return la ultima posicion del carcater 'c' a partir del valor m si lo encuentra. Si no, -1.
      */
-    public static int UltimoIndice (String s, char c, int m) {
-        if (s == null || s.isEmpty()) {
-            return -1;
-        }
+    public static int UltimoIndice(String s, char c, int m) {
         for (int i = m; i >= 0; i--) {
-            if (s.charAt(i) == c) {
-                return i;
-            }
+            if (s.charAt(i) == c) return i;
         }
         return -1;
     }
@@ -81,26 +76,7 @@ public class StringImpostor {
      * @return la String sin espacios al princpio y al final
      */
     public static String SinSangria(String s) {
-        if (s == null || s.isEmpty()) return "";
 
-        int inicio = 0;
-        int fin = s.length() - 1;
-
-        while (inicio <= fin && s.charAt(inicio) == ' ') {
-            inicio++;
-        }
-        while (fin >= inicio && s.charAt(fin) == ' ') {
-            fin--;
-        }
-
-        if (inicio > fin) return "";
-
-        String resultado = "";
-        for (int i = inicio; i <= fin; i++) {
-            resultado += s.charAt(i);
-        }
-
-        return resultado;
     }
 
 
@@ -116,16 +92,7 @@ public class StringImpostor {
      * @return UNA NUEVA STRING, a partir de la anterior
      */
     public static String CortarString(String s, int a, int b) {
-        if (s == null || s.isEmpty() || a < 0 || b > s.length() || a > b) {
-            return "";
-        }
 
-        String resultado = "";
-        for (int i = a; i < b; i++) {
-            resultado += s.charAt(i);
-        }
-
-        return resultado;
     }
 
 
