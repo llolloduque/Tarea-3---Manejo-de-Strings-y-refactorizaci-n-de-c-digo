@@ -24,19 +24,14 @@ public class EjerciciosString {
      * @return el numero total de veces que aparece 'c'
      */
     public static int ContarLetra(String s, char c) {
-        if (s == null || s.isEmpty()) return 0;
-
         int contador = 0;
-        int posicion = s.indexOf(c);
-
-        while (posicion != -1) {
-            contador++;
-            posicion = s.indexOf(c, posicion + 1);
+        for (int i = 0; i < s.length(); i++) {
+            if (s.charAt(i) == c) {
+                contador++; // si coincide, sumo 1
+            }
         }
-
         return contador;
     }
-
 
 
     /**
@@ -56,21 +51,25 @@ public class EjerciciosString {
      *  >> resultado: "loca poca roca boca ocarina oca" (porque contienen "oca")
      *
      */
-    public static String Filtrar1 (String s1, String s2){
-        if (s1 == null || s1.isEmpty()) return "";
-
+    public static String Filtrar1(String s1, String s2) {
         String resultado = "";
-        String[] palabras = s1.split(" ");
+        String palabra = "";
 
-        for (String palabra : palabras) {
-            if (palabra.contains(s2)) {
-                if (!resultado.isEmpty()) resultado += " ";
-                resultado += palabra;
+        for (int i = 0; i < s1.length(); i++) {
+            char ch = s1.charAt(i);
+
+            if (ch != ' ') {
+                palabra += ch; // construyo palabra letra a letra
+            } else {
+                if (palabra.contains(s2)) resultado += palabra + " ";
+                palabra = ""; // limpio para la siguiente palabra
             }
         }
-        return resultado;
-    }
+        // último palabra
+        if (palabra.contains(s2)) resultado += palabra;
 
+        return resultado.trim();
+    }
 
 
     /**
@@ -90,19 +89,23 @@ public class EjerciciosString {
      *  >> resultado: "ocarina oca" (porque empiezan por "oca")
      *
      */
-    public static String Filtrar2 (String s1, String s2){
-        if (s1 == null || s1.isEmpty()) return "";
-
+    public static String Filtrar2(String s1, String s2) {
         String resultado = "";
-        String[] palabras = s1.split(" ");
+        String palabra = "";
 
-        for (String palabra : palabras) {
-            if (palabra.startsWith(s2)) {
-                if (!resultado.isEmpty()) resultado += " ";
-                resultado += palabra;
+        for (int i = 0; i < s1.length(); i++) {
+            char ch = s1.charAt(i);
+
+            if (ch != ' ') {
+                palabra += ch;
+            } else {
+                if (palabra.startsWith(s2)) resultado += palabra + " ";
+                palabra = "";
             }
         }
-        return resultado;
+        if (palabra.startsWith(s2)) resultado += palabra;
+
+        return resultado.trim();
     }
 
 
@@ -116,19 +119,23 @@ public class EjerciciosString {
      *
      * @return Los correos validos
      */
-    public static String FiltrarCorreo (String s1, String s2){
-        if (s1 == null || s1.isEmpty()) return "";
-
+    public static String FiltrarCorreo(String s1, String s2) {
         String resultado = "";
-        String[] correos = s1.split(" ");
+        String palabra = "";
 
-        for (String correo : correos) {
-            if (correo.contains("@"+s2)) {
-                if (!resultado.isEmpty()) resultado += " ";
-                resultado += correo;
+        for (int i = 0; i < s1.length(); i++) {
+            char ch = s1.charAt(i);
+
+            if (ch != ' ' && ch != '\n') {
+                palabra += ch;
+            } else {
+                if (palabra.contains("@" + s2)) resultado += palabra + " ";
+                palabra = "";
             }
         }
-        return resultado;
+        if (palabra.contains("@" + s2)) resultado += palabra;
+
+        return resultado.trim();
     }
 
 
@@ -144,21 +151,24 @@ public class EjerciciosString {
      * @return IP NO validas.
      *
      */
-    public static String FiltrarIP (String s1, String s2){
-        if (s1 == null || s1.isEmpty()) return "";
-
+    public static String FiltrarIP(String s1, String s2) {
         String resultado = "";
-        String[] ips = s1.split(" ");
+        String palabra = "";
 
-        for (String ip : ips) {
-            if (!ip.contains(s2)) {
-                if (!resultado.isEmpty()) resultado += " ";
-                resultado += ip;
+        for (int i = 0; i < s1.length(); i++) {
+            char ch = s1.charAt(i);
+
+            if (ch != ' ') {
+                palabra += ch;
+            } else {
+                if (!palabra.contains(s2)) resultado += palabra + " ";
+                palabra = "";
             }
         }
-        return resultado;
-    }
+        if (!palabra.contains(s2)) resultado += palabra;
 
+        return resultado.trim();
+    }
 
     /**
      *  Ejercicio 6: Desarrollar un método llamado FiltrarFecha que filtre una ristra de fechas
@@ -180,39 +190,40 @@ public class EjerciciosString {
      *  >> resultado: 12/05/2005
      *
      */
-    public static String FiltrarFecha (String s1, String s2){
-        if (s1 == null || s1.isEmpty()) return "";
-
+    public static String FiltrarFecha(String s1, String s2) {
         String resultado = "";
-        String[] fechas = s1.split(" ");
+        String palabra = "";
+        String mes = "";
 
-        String mesNumero = "";
+        if (s2.equals("ENERO")) mes = "/01/";
+        if (s2.equals("FEBRERO")) mes = "/02/";
+        if (s2.equals("MARZO")) mes = "/03/";
+        if (s2.equals("ABRIL")) mes = "/04/";
+        if (s2.equals("MAYO")) mes = "/05/";
+        if (s2.equals("JUNIO")) mes = "/06/";
+        if (s2.equals("JULIO")) mes = "/07/";
+        if (s2.equals("AGOSTO")) mes = "/08/";
+        if (s2.equals("SEPTIEMBRE")) mes = "/09/";
+        if (s2.equals("OCTUBRE")) mes = "/10/";
+        if (s2.equals("NOVIEMBRE")) mes = "/11/";
+        if (s2.equals("DICIEMBRE")) mes = "/12/";
 
-        switch (s2.toUpperCase()) {
-            case "ENERO": mesNumero = "/01/"; break;
-            case "FEBRERO": mesNumero = "/02/"; break;
-            case "MARZO": mesNumero = "/03/"; break;
-            case "ABRIL": mesNumero = "/04/"; break;
-            case "MAYO": mesNumero = "/05/"; break;
-            case "JUNIO": mesNumero = "/06/"; break;
-            case "JULIO": mesNumero = "/07/"; break;
-            case "AGOSTO": mesNumero = "/08/"; break;
-            case "SEPTIEMBRE": mesNumero = "/09/"; break;
-            case "OCTUBRE": mesNumero = "/10/"; break;
-            case "NOVIEMBRE": mesNumero = "/11/"; break;
-            case "DICIEMBRE": mesNumero = "/12/"; break;
-        }
+        for (int i = 0; i < s1.length(); i++) {
+            char ch = s1.charAt(i);
 
-        for (String fecha : fechas) {
-            if (!fecha.contains(mesNumero)) {
-                if (!resultado.isEmpty()) resultado += " ";
-                resultado += fecha;
+            if (ch != ' ') {
+                palabra += ch;
+            } else {
+                if (!palabra.contains(mes)) resultado += palabra + " ";
+                palabra = "";
             }
         }
+        if (!palabra.contains(mes)) resultado += palabra;
 
-        return resultado;
+        return resultado.trim();
     }
 
+    //Aqui tuve un poco mas de ayuda
 
 
 

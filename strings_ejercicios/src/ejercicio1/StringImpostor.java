@@ -75,8 +75,17 @@ public class StringImpostor {
      * @param s, es la String
      * @return la String sin espacios al princpio y al final
      */
-    public static String SinSangria(String s) {
+    public static String SinSangria(String s){
+        int inicio = 0;
+        int fin = s.length() - 1;
 
+        while (inicio <= fin && s.charAt(inicio) == ' ') inicio++;
+        while (fin >= inicio && s.charAt(fin) == ' ') fin--;
+
+        String resultado = "";
+        for (int i = inicio; i <= fin; i++) resultado += s.charAt(i);
+
+        return resultado;
     }
 
 
@@ -91,8 +100,10 @@ public class StringImpostor {
      *
      * @return UNA NUEVA STRING, a partir de la anterior
      */
-    public static String CortarString(String s, int a, int b) {
-
+    public static String CortarString(String s, int a, int b){
+        String resultado = "";
+        for (int i = a; i < b; i++) resultado += s.charAt(i);
+        return resultado;
     }
 
 
